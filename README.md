@@ -18,5 +18,23 @@ sudo su admin -
 3. The yaml file equivalent to the inventory.ini file: 
 
 4. Test the ping:
-    -   Using the inventory.ini
-    -   Using the inventory.yml
+    -   Using the inventory.ini : 
+    execute the command : ``` ansible -i inventory.ini all -m ping```
+
+    See the figure that shows the execution output : 
+Notice that the output color is orange with a status "..."
+
+    -   Using the inventory.yml : 
+    execute the following command : ``` ansible -i inventory.yml all -m ping```
+
+    The See the figure that shows the execution output : 
+Notice that the output color is green with a status "..." 
+
+As we apply the ping module to the client host which is in the prod group we can replace the 'all' in the command either by 'prod' or 'client'.
+So, the command can be written as :
+    ``` ansible -i inventory.ini prod -m ping```
+    ``` ansible -i inventory.ini client -m ping```
+
+5. Create a file 'myFile.txt' that contains a greeting sentese "Welcome to Ansible {{env}} environment". Then, copy it to the client host using the ansible copy module: 
+
+``` ansible -i inventory.ini copy -a "dest=/home/admin/myFile.txt content='Welcome to Ansible {{env}} environment'"``` 
